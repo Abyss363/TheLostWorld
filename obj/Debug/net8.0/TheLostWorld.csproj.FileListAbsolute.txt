@@ -12,3 +12,4 @@ C:\Users\Tempest\Documents\C# Projects\The Lost World\TheLostWorld\obj\Debug\net
 C:\Users\Tempest\Documents\C# Projects\The Lost World\TheLostWorld\obj\Debug\net8.0\TheLostWorld.pdb
 C:\Users\Tempest\Documents\C# Projects\The Lost World\TheLostWorld\obj\Debug\net8.0\TheLostWorld.genruntimeconfig.cache
 C:\Users\Tempest\Documents\C# Projects\The Lost World\TheLostWorld\obj\Debug\net8.0\ref\TheLostWorld.dll
+C:\Users\Tempest\Documents\C# Projects\The Lost World\TheLostWorld\obj\Debug\net8.0\TheLostWorld.sourcelink.json
