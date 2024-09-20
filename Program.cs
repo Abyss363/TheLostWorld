@@ -4,6 +4,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        MainMenu mainMenu = new MainMenu();
+        Game game= new Game();
     }
 }

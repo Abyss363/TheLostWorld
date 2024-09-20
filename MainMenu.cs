@@ -48,9 +48,11 @@ public class MainMenu
             {
                 case 1:
                     CharacterCreation newCharacter = new CharacterCreation();
+                    World newWorld = new World();
                     break;
 
                 case 2:
+                Game.Load();
                     break;
 
                 case 3:
