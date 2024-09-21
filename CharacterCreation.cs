@@ -6,7 +6,6 @@ public class CharacterCreation
     public CharacterCreation()
     {
         int countId = 0;
-        Console.Clear();
         Console.WriteLine("It's time to create your character");
         
         Console.WriteLine("Do you remember your name?");//Name Prompt
@@ -16,7 +15,7 @@ public class CharacterCreation
         Game.currentPlayer.race = validateInput.ValidateRace();
 
         Console.WriteLine("How did you train?");
-        Game.currentPlayer._class = validateInput.ValidateClass();
+        Game.currentPlayer.playerClass = validateInput.ValidateClass();
 
         Console.WriteLine("Where are you from(origin)");
         Game.currentPlayer.origin = validateInput.ValidateOrigin();
@@ -25,6 +24,10 @@ public class CharacterCreation
         countId++;
         Game.currentPlayer.health = 10;
         Game.currentPlayer.gold = 10;
+        
+        Game.currentPlayer.CalculateStats();
+
+        Console.WriteLine($"Player created: {Game.currentPlayer.name}, {Game.currentPlayer.race}, {Game.currentPlayer.playerClass}");
 
         Game.Save();
     }

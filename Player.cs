@@ -4,87 +4,87 @@
 public class Player
 {
     //Core
-    public string? name;
-    public string? race;
-    public string? _class;
-    public string? origin;
-    public int id;
-    public int level;
-    public int exp;
-    public int maxExp;
-    public int attributePoints;
-    
+    public string name { get; set; } = "";
+    public string race { get; set; } = "";
+    public string playerClass { get; set; } = "";
+    public string origin { get; set; } = "";
+    public int id { get; set; } = 0;
+    public int level { get; set; } = 1;
+    public int exp { get; set; } = 0;
+    public int maxExp { get; set; } = 100;
+    public int attributePoints { get; set; } = 0;
+
     //Attributes
-    public int vitality;
-    public int dexterity;
-    public int agility;
-    public int strength;
-    public int mind;
-    public int intelligence;
-    
+    public int vitality { get; set; } = 1;
+    public int dexterity { get; set; } = 1;
+    public int agility { get; set; } = 1;
+    public int strength { get; set; } = 1;
+    public int mind { get; set; } = 1;
+    public int intelligence { get; set; } = 1;
+
     //Stats
-    public int maxHealth;
-    public int health;
-    public int mana;
-    public int maxMana;
-    public int stamina;
-    public int defence;
-    public int finalDefence;
-    public int attack;
-    public int magicAttack;
-    public int finalMagicDamage;
-    public int finalDamage;
+    public int maxHealth { get; set; } = 10;
+    public int health { get; set; } = 10;
+    public int mana { get; set; } = 10;
+    public int maxMana { get; set; } = 10;
+    public int stamina { get; set; } = 10;
+    public int defence { get; set; } = 10;
+    public int finalDefence { get; set; } = 10;
+    public int attack { get; set; } = 10;
+    public int magicAttack { get; set; } = 10;
+    public int finalMagicDamage { get; set; } = 10;
+    public int finalDamage { get; set; } = 10;
 
     //Afinities
-    public int fire;
-    public int solar;
-    public int wind;
-    public int hurricane;
-    public int water;
-    public int ice;
-    public int earth;
-    public int metal;
-    public int gravity;
-    public int lightning;
-    public int plasma;
-    public int sound;
-    public int psychic;
-    public int light;
-    public int holy;
-    public int shadow;
-    public int dark;
-    public int space;
-    public int _void;
-    public int time;
-    public int domain;
-    public int spaceTime;
+    public int fire { get; set; } = 0;
+    public int solar { get; set; } = 0;
+    public int wind { get; set; } = 0;
+    public int hurricane { get; set; } = 0;
+    public int water { get; set; } = 0;
+    public int ice { get; set; } = 0;
+    public int earth { get; set; } = 0;
+    public int metal { get; set; } = 0;
+    public int gravity { get; set; } = 0;
+    public int lightning { get; set; } = 0;
+    public int plasma { get; set; } = 0;
+    public int sound { get; set; } = 0;
+    public int psychic { get; set; } = 0;
+    public int light { get; set; } = 0;
+    public int holy { get; set; } = 0;
+    public int shadow { get; set; } = 0;
+    public int dark { get; set; } = 0;
+    public int space { get; set; } = 0;
+    public int voidType { get; set; } = 0;
+    public int time { get; set; } = 0;
+    public int domain { get; set; } = 0;
+    public int spaceTime { get; set; } = 0;
 
     //ClassExps
-    public int fighter;//advances to warrior
-    public int fighterLevel;
-    public int fighterMaxExp;
+    public int fighter { get; set; } = 0;//advances to warrior
+    public int fighterLevel { get; set; } = 1;
+    public int fighterMaxExp { get; set; } = 50;
 
-    public int mage;//advances to sorceror
-    public int mageLevel;
-    public int mageMaxExp;
+    public int mage { get; set; } = 0;//advances to sorceror
+    public int mageLevel { get; set; } = 1;
+    public int mageMaxExp { get; set; } = 50;
 
-    public int marksman;//advances to ranger
-    public int marksmanLevel;
-    public int marksmanMaxExp;
+    public int marksman { get; set; } = 0;//advances to ranger
+    public int marksmanLevel { get; set; } = 1;
+    public int marksmanMaxExp { get; set; } = 50;
 
-    public int rogue;//advances to assasin
-    public int rogueLevel;
-    public int rogueMaxExp;
+    public int rogue { get; set; } = 0;//advances to assasin
+    public int rogueLevel { get; set; } = 1;
+    public int rogueMaxExp { get; set; } = 50;
 
-    public int tank;//advances to berserker
-    public int tankLevel;
-    public int tankMaxExp;
+    public int tank { get; set; } = 0;//advances to berserker
+    public int tankLevel { get; set; } = 1;
+    public int tankMaxExp { get; set; } = 50;
 
-    public int invoker;//advances to necromancer
-    public int invokerLevel;
-    public int invokerMaxExp;
+    public int invoker { get; set; } = 0;//advances to necromancer
+    public int invokerLevel { get; set; } = 1;
+    public int invokerMaxExp { get; set; } = 50;
     //General
-    public int gold = 0;
+    public int gold { get; set; } = 0;
 
 
     public void CalculateStats()

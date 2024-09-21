@@ -1,5 +1,7 @@
 ﻿
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.Json;
+
 
 namespace TheLostWorld;
 
@@ -7,11 +9,11 @@ public class Game
 {
     public static Player currentPlayer = new Player();
     MainMenu mainMenu = new MainMenu();
-    
+
 
     public Game()
     {
-        if (Directory.Exists("Saves"))
+        if (!Directory.Exists("Saves"))
         {
             Directory.CreateDirectory("Saves");
         }
@@ -24,86 +26,104 @@ public class Game
 
     public static void Save()
     {
-#pragma warning disable SYSLIB0011 // Type or member is obsolete
-        BinaryFormatter binForm = new BinaryFormatter();
-        string path = "Saves/" + currentPlayer.id.ToString();
-        FileStream file = File.Open(path, FileMode.OpenOrCreate);
-        binForm.Serialize(file, currentPlayer);
-        file.Close();
+        try
+        {
+            string path = "Saves/" + currentPlayer.id.ToString() + ".json";
+            string jsonData = JsonSerializer.Serialize(currentPlayer);
+
+            // Log what is being serialized
+            Console.WriteLine("Saving Player Data: " + jsonData);
+
+            File.WriteAllText(path, jsonData);
+            Console.WriteLine($"Player data saved to: {path}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error saving player data: " + ex.Message);
+        }
     }
+
 
     public static Player Load()
     {
-        Console.Clear();
-        string[] paths = Directory.GetFiles("Saves");
-        List<Player> players = new List<Player>();
-
-        BinaryFormatter binForm = new BinaryFormatter();
-        foreach (string p in paths)
+        try
         {
-            FileStream file = File.Open(p, FileMode.Open);
-            Player player = (Player)binForm.Deserialize(file);
-            file.Close();
-            players.Add(player);
-        }
+            string[] paths = Directory.GetFiles("Saves", "*.json");
+            List<Player> players = new List<Player>();
 
-        while (true)
-        {
-            Console.Clear();
-            Console.WriteLine("Choose your save.");
-
-            foreach (Player p in players)
+            foreach (string p in paths)
             {
-                Console.WriteLine(p.id + ": " + p.name);
+                string jsonData = File.ReadAllText(p);
+                Player player = JsonSerializer.Deserialize<Player>(jsonData);
+                players.Add(player);
+
+                // Log the deserialized player
+                Console.WriteLine($"Loaded player: {player.name}, {player.race}, {player.playerClass}");
             }
 
-            Console.WriteLine("Please enter player name or id (id:# or playername), 'create' will start a new save");
-            string[] data = Console.ReadLine()!.Split(':');
-
-            try
+            while (true)
             {
-                if (data[0] == "id")
+                Console.WriteLine("Choose your save.");
+
+                foreach (Player p in players)
                 {
-                    if (int.TryParse(data[1], out int id))
+                    Console.WriteLine(p.id + ": " + p.name);
+                }
+
+                Console.WriteLine("Please enter player name or id (id:# or playername), 'create' will start a new save");
+                string[] data = Console.ReadLine()!.Split(':');
+
+                try
+                {
+                    if (data[0] == "id")
+                    {
+                        if (int.TryParse(data[1], out int id))
+                        {
+                            foreach (Player player in players)
+                            {
+                                if (player.id == id)
+                                {
+                                    return player;
+                                }
+                            }
+                            Console.WriteLine("No player with that id!");
+                            Console.ReadKey();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Your id needs to be a number! Press any key to continue.");
+                            Console.ReadKey();
+                        }
+                    }
+                    else if (data[0] == "create")
+                    {
+
+                    }
+                    else
                     {
                         foreach (Player player in players)
                         {
-                            if (player.id == id)
+                            if (player.name == data[0])
                             {
                                 return player;
                             }
                         }
-                        Console.WriteLine("No player with that id!");
-                        Console.ReadKey();
-                    }
-                    else
-                    {
-                        Console.WriteLine("Your id needs to be a number! Press any key to continue.");
+                        Console.WriteLine("No player with that name!");
                         Console.ReadKey();
                     }
                 }
-                else if(data[0] == "create")
+                catch (IndexOutOfRangeException)
                 {
-
-                }
-                else
-                {
-                    foreach (Player player in players)
-                    {
-                        if (player.name == data[0])
-                        {
-                            return player;
-                        }
-                    }
-                    Console.WriteLine("No player with that name!");
+                    Console.WriteLine("Your id needs to be a number! Press any key to continue.");
                     Console.ReadKey();
                 }
             }
-            catch (IndexOutOfRangeException)
-            {
-                Console.WriteLine("Your id needs to be a number! Press any key to continue.");
-                Console.ReadKey();
-            }
         }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error loading player data: " + ex.Message);
+            return null;
+        }
+
     }
 }

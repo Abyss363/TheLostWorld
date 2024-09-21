@@ -8,20 +8,22 @@ public class MainMenu
 
     public MainMenu()
     {
-        //Obviously, the actual menu
-        Console.WriteLine("-----------------------WELCOME TO THE LOST WORLDS-----------------------");
-        Console.WriteLine("\n\n\n\n");
 
-        Console.WriteLine("********************** 1. New game   **********************");
-        Console.WriteLine("********************** 2. Continue   **********************");
-        Console.WriteLine("********************** 3. Credits    **********************");
-        Console.WriteLine("********************** 4. Exit       **********************");
-
-        Console.WriteLine("Enter an Option. . . . . . . . . . .");
 
 
         do
         {
+            //Obviously, the actual menu
+            Console.WriteLine("-----------------------WELCOME TO THE LOST WORLDS-----------------------");
+            Console.WriteLine("\n\n\n\n");
+
+            Console.WriteLine("********************** 1. New game   **********************");
+            Console.WriteLine("********************** 2. Continue   **********************");
+            Console.WriteLine("********************** 3. Credits    **********************");
+            Console.WriteLine("********************** 4. Exit       **********************");
+
+            Console.WriteLine("Enter an Option. . . . . . . . . . .");
+
             while (validEntry == false)
             {
                 input = Console.ReadLine();
