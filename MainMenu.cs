@@ -52,7 +52,8 @@ public class MainMenu
                     break;
 
                 case 2:
-                Game.Load();
+                    Game.currentPlayer = Game.Load();
+                    World continueWorld = new World();
                     break;
 
                 case 3:

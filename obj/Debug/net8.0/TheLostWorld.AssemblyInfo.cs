@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TheLostWorld")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+67f19ab309faf1629f7ff98adac44ab9fb91d9c4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+93c7fbefb33ac91d647e273792b9437099e22b70")]
 [assembly: System.Reflection.AssemblyProductAttribute("TheLostWorld")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TheLostWorld")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

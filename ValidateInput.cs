@@ -1,4 +1,6 @@
-﻿namespace TheLostWorld;
+﻿using System.Reflection;
+
+namespace TheLostWorld;
 
 public class ValidateInput
 {
@@ -27,9 +29,14 @@ public class ValidateInput
         //Races listed here
         do
         {
-            input = Console.ReadLine()!.ToLower();
-            List<string> races = new List<string> { };//Races go here
+            
+            List<string> races = new List<string> {"john"};//Races go here
             int raceCount = 0;
+            foreach (var race in races)
+            {
+                Console.WriteLine($"Race: {race}");
+            }
+            input = Console.ReadLine()!.ToLower();
             foreach (var race in races)
             {
                 if (input!.Contains(race.ToLower()))
@@ -55,8 +62,13 @@ public class ValidateInput
         //Classes listed here
         do
         {
+            
+            List<string> classes = new List<string> {"fighter", "mage", "marksman", "rogue", "tank", "invoker"};//Classes go here
+            foreach (var _class in classes)
+            {
+                Console.WriteLine($"Class: {_class}");
+            }
             input = Console.ReadLine()!.ToLower();
-            List<string> classes = new List<string> { };//Classes go here
             int classCount = 0;
             foreach (var _class in classes)
             {
@@ -72,7 +84,7 @@ public class ValidateInput
             }
             else
             {
-                Console.WriteLine("Invalid Race");
+                Console.WriteLine("Invalid Class");
             }
         }
         while (true);
@@ -83,8 +95,12 @@ public class ValidateInput
         //Origins and Origin stories listed here
         do
         {
+            List<string> origins = new List<string> {"samurai"};//Origins go here
+            foreach (var origin in origins)
+            {
+                Console.WriteLine($"Origin: {origin}");
+            }
             input = Console.ReadLine()!.ToLower();
-            List<string> origins = new List<string> { };//Origins go here
             int originCount = 0;
             foreach (var origin in origins)
             {
@@ -100,7 +116,7 @@ public class ValidateInput
             }
             else
             {
-                Console.WriteLine("Invalid Race");
+                Console.WriteLine("Invalid Origin");
             }
         }
         while (true);

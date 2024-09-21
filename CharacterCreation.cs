@@ -6,7 +6,7 @@ public class CharacterCreation
     public CharacterCreation()
     {
         int countId = 0;
-
+        Console.Clear();
         Console.WriteLine("It's time to create your character");
         
         Console.WriteLine("Do you remember your name?");//Name Prompt
@@ -23,7 +23,6 @@ public class CharacterCreation
 
         Game.currentPlayer.id = countId;
         countId++;
-        Game.currentPlayer.maxHealth = 10;
         Game.currentPlayer.health = 10;
         Game.currentPlayer.gold = 10;
 

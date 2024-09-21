@@ -7,6 +7,7 @@ public class Game
 {
     public static Player currentPlayer = new Player();
     MainMenu mainMenu = new MainMenu();
+    
 
     public Game()
     {
