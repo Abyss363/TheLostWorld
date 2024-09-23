@@ -23,7 +23,7 @@ public class CharacterCreation
         Game.currentPlayer.origin = validateInput.ValidateOrigin();
 
         Game.currentPlayer.health = 10;
-        Game.currentPlayer.gold = 10;
+        Game.currentPlayer.gold = 9999;
 
         Game.currentPlayer.CalculateStats();
         Game.currentPlayer.skills.AddSkill("heal");

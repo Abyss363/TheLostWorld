@@ -206,7 +206,8 @@ public class Player
             Console.WriteLine($"MP: {this.mana}");
             Console.WriteLine($"Stamina: {this.stamina}");
 
-            Console.WriteLine("(I)tem Menu");
+            Console.WriteLine("(U)se Item");
+            Console.WriteLine("(I)nventory");
             Console.WriteLine("(S)how Skills");
             Console.WriteLine("(L)evels and Exp");
             Console.WriteLine("(E)xit Player Menu");
@@ -215,10 +216,12 @@ public class Player
 
             switch (input)
             {
-                case "i":
+                case "u":
                     UseItem();
                     break;
-
+                case "i":
+                    ShowInventory();
+                    break;
                 case "s":
                     UseSkill();
                     break;

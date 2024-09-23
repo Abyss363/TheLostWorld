@@ -63,4 +63,18 @@ public class EveryItem
 
         return false; // Item not found or no more left to use
     }
+
+    public void BuyItem(string itemName, int count, int itemValue)
+    {
+        var item = Items.FirstOrDefault(i => i.Name == itemName);
+        if (item != null)
+        {
+            item.Count += count; // Update count if item exists
+            Game.currentPlayer.gold -= count * itemValue;
+        }
+        else
+        {
+            Items.Add(new Item(itemName, count)); // Add new item if it doesn't exist
+        }
+    }
 }

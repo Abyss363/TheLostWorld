@@ -112,7 +112,8 @@ public class ValidateInput
     {
         //Origins and Origin stories listed here
         Console.WriteLine("Origin Stories:");
-        Console.WriteLine("Fighter");
+        Console.WriteLine("||Fighter||");
+        Console.WriteLine("");
         do
         {
             List<string> origins = new List<string> { "fighter", "mage", "marksman", "rogue", "tank", "invoker" };//Origins go here
@@ -204,7 +205,94 @@ public class ValidateInput
     {
         do
         {
-            List<string> options = new List<string> { "i", "s", "l", "e" };
+            List<string> options = new List<string> { "i", "s", "l", "e", "u" };
+
+            input = Console.ReadLine()!.ToLower();
+
+            int optionCount = 0;
+            foreach (var option in options)
+            {
+                if (input == option.ToLower())
+                {
+                    optionCount++;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(input) && optionCount > 0)
+            {
+                return input;
+            }
+            else
+            {
+                Console.WriteLine("Invalid Selection");
+            }
+        }
+        while (true);
+    }
+
+    public string ValidateLocationOption()
+    {
+        do
+        {
+            List<string> options = new List<string> { "a", "g", "b", "e" };
+
+            input = Console.ReadLine()!.ToLower();
+
+            int optionCount = 0;
+            foreach (var option in options)
+            {
+                if (input == option.ToLower())
+                {
+                    optionCount++;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(input) && optionCount > 0)
+            {
+                return input;
+            }
+            else
+            {
+                Console.WriteLine("Invalid Selection");
+            }
+        }
+        while (true);
+    }
+
+    public string ValidateBuyOrSell()
+    {
+        do
+        {
+            List<string> options = new List<string> { "b", "s", "l" };
+
+            input = Console.ReadLine()!.ToLower();
+
+            int optionCount = 0;
+            foreach (var option in options)
+            {
+                if (input == option.ToLower())
+                {
+                    optionCount++;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(input) && optionCount > 0)
+            {
+                return input;
+            }
+            else
+            {
+                Console.WriteLine("Invalid Selection");
+            }
+        }
+        while (true);
+    }
+
+    public string ValidateBuyOption()
+    {
+        do
+        {
+            List<string> options = new List<string> { "h", "m", "s" };
 
             input = Console.ReadLine()!.ToLower();
 
