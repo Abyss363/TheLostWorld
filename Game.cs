@@ -10,17 +10,18 @@ public class Game
     public static Player currentPlayer = new Player();
     public static bool isDead = false;
     MainMenu mainMenu = new MainMenu();
+    private static string saveDirectory = "Saves";
+    private static string idFilePath = Path.Combine(saveDirectory, "last_id.txt"); // File path for the last ID
+
 
 
     public Game()
     {
-        if (!Directory.Exists("Saves"))
+        if (!Directory.Exists(saveDirectory))
         {
-            Directory.CreateDirectory("Saves");
+            Directory.CreateDirectory(saveDirectory);
         }
     }
-
-    private static string idFilePath = "Saves/last_id.txt"; // File path for the last ID
     public static int lastId = 0; // Last character ID
 
     // Load last ID from file
@@ -47,12 +48,20 @@ public class Game
     // Save the updated ID to file
     public static void SaveLastId()
     {
+        if (!Directory.Exists(saveDirectory))
+        {
+            Directory.CreateDirectory(saveDirectory);
+        }
         File.WriteAllText(idFilePath, lastId.ToString());
     }
 
     public static void Save()
     {
-        string path = "Saves/" + currentPlayer.id.ToString() + ".json";
+        if (!Directory.Exists(saveDirectory))
+        {
+            Directory.CreateDirectory(saveDirectory);
+        }
+        string path = Path.Combine(saveDirectory, currentPlayer.id.ToString() + ".json");
         string jsonData = JsonSerializer.Serialize(currentPlayer);
         File.WriteAllText(path, jsonData);
     }
@@ -60,9 +69,10 @@ public class Game
 
     public static Player Load()
     {
+
         try
         {
-            string[] paths = Directory.GetFiles("Saves", "*.json");
+            string[] paths = Directory.GetFiles(saveDirectory, "*.json");
             List<Player> players = new List<Player>();
 
             foreach (string p in paths)

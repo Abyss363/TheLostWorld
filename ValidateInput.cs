@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Drawing;
+using System.Reflection;
 
 namespace TheLostWorld;
 
@@ -110,6 +111,8 @@ public class ValidateInput
     public string ValidateOrigin()
     {
         //Origins and Origin stories listed here
+        Console.WriteLine("Origin Stories:");
+        Console.WriteLine("Fighter");
         do
         {
             List<string> origins = new List<string> { "fighter", "mage", "marksman", "rogue", "tank", "invoker" };//Origins go here
