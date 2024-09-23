@@ -2,7 +2,7 @@
 
 public class Combat
 {
-    public Combat(string name, int eHealth, int escapeChance, int stamina, int attackPower, int armor)
+    public Combat(string name, double eHealth, int escapeChance, int stamina, int attackPower, int armor)
     {
         Random rand = new Random();
         string input;
@@ -51,11 +51,12 @@ public class Combat
                     break;
 
                 case "i":
-                    UseItem();
+                    Game.currentPlayer.UseItem();
 
                     break;
 
                 case "s":
+                    Game.currentPlayer.UseSkill(ref eHealth);
 
                     break;
 
@@ -75,34 +76,13 @@ public class Combat
             }
         }
         while (eHealth > 0 && Game.currentPlayer.health > 0);
-        if(Game.currentPlayer.health < 0)
+        if (Game.currentPlayer.health < 0)
         {
             Console.WriteLine("You died.");
             Game.isDead = true;
         }
     }
 
-    public void UseItem()
-    {
-        ValidateInput validInput = new ValidateInput();
 
-        // Display the player's inventory
-        Game.currentPlayer.ShowInventory();
-
-        Console.WriteLine("Enter the name of the item you want to use:");
-        string itemName = validInput.ValidateName(); // Validate input
-
-        // Try to use the item
-        bool success = Game.currentPlayer.inventory.CombatUseItem(itemName);
-
-        if (success)
-        {
-            Console.WriteLine($"You used {itemName}.");
-        }
-        else
-        {
-            Console.WriteLine($"You don't have {itemName} or cannot use it.");
-        }
-    }
 }
 

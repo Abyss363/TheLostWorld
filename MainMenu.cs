@@ -13,6 +13,7 @@ public class MainMenu
 
         do
         {
+
             //Obviously, the actual menu
             Console.WriteLine("-----------------------WELCOME TO THE LOST WORLDS-----------------------");
             Console.WriteLine("\n\n\n\n");
@@ -42,13 +43,16 @@ public class MainMenu
                 {
                     Console.WriteLine("Invalid Input. Please enter a number corresponding to an option to proceed");
                 }
+
             }
             validEntry = false;
+            Console.Clear();
 
             //Menu leads to other parts of the program
             switch (intInput)
             {
                 case 1:
+                    Game.LoadLastId();
                     CharacterCreation newCharacter = new CharacterCreation();
                     World newWorld = new World();
                     break;

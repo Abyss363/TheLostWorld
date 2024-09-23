@@ -2,12 +2,14 @@
 
 public class CharacterCreation
 {
-    ValidateInput validateInput =  new ValidateInput();
+    ValidateInput validateInput = new ValidateInput();
     public CharacterCreation()
     {
-        int countId = Game.currentPlayer.id + 1;
+        Game.lastId++;
+        Game.currentPlayer.id = Game.lastId;
+
         Console.WriteLine("It's time to create your character");
-        
+
         Console.WriteLine("Do you remember your name?");//Name Prompt
         Game.currentPlayer.name = validateInput.ValidateName();
 
@@ -20,14 +22,16 @@ public class CharacterCreation
         Console.WriteLine("Where are you from(origin)");
         Game.currentPlayer.origin = validateInput.ValidateOrigin();
 
-        Game.currentPlayer.id = countId;
         Game.currentPlayer.health = 10;
         Game.currentPlayer.gold = 10;
-        
+
         Game.currentPlayer.CalculateStats();
+        Game.currentPlayer.skills.AddSkill("heal");
+        Game.currentPlayer.skills.AddSkill("fireball");
 
         Console.WriteLine($"Player created: {Game.currentPlayer.name}, {Game.currentPlayer.race}, {Game.currentPlayer.playerClass}");
 
         Game.Save();
+        Game.SaveLastId();
     }
 }

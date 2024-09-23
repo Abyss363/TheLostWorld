@@ -19,6 +19,7 @@ public class FirstTown
             Console.WriteLine("This is the place your adventure begins");
 
             Console.WriteLine("You can do the following here:");
+            Console.WriteLine("(P)layer Menu");
             Console.WriteLine("(T)alk to the Local Residents");
             Console.WriteLine("(C)heck Locations");
             Console.WriteLine("(D)ungeon Clearing");
@@ -28,6 +29,9 @@ public class FirstTown
 
             switch (input)
             {
+                case "p":
+                    Game.currentPlayer.PlayerMenu();
+                    break;
                 case "t":
                     People();
                     break;

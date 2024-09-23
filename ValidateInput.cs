@@ -24,6 +24,23 @@ public class ValidateInput
         while (true);
     }
 
+    public string ValidateItemName()
+    {
+        do
+        {
+            input = Console.ReadLine();
+            if (!string.IsNullOrEmpty(input))
+            {
+                return input.ToLower();
+            }
+            else
+            {
+                Console.WriteLine("Please enter a valid name.");
+            }
+        }
+        while (true);
+    }
+
     public string ValidateRace()
     {
         //Races listed here
@@ -95,7 +112,7 @@ public class ValidateInput
         //Origins and Origin stories listed here
         do
         {
-            List<string> origins = new List<string> { "samurai" };//Origins go here
+            List<string> origins = new List<string> { "fighter", "mage", "marksman", "rogue", "tank", "invoker" };//Origins go here
             foreach (var origin in origins)
             {
                 Console.WriteLine($"Origin: {origin}");
@@ -155,7 +172,36 @@ public class ValidateInput
     {
         do
         {
-            List<string> options = new List<string> { "t", "c", "d", "l" };
+            List<string> options = new List<string> { "t", "c", "d", "l", "p" };
+
+            input = Console.ReadLine()!.ToLower();
+
+            int optionCount = 0;
+            foreach (var option in options)
+            {
+                if (input == option.ToLower())
+                {
+                    optionCount++;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(input) && optionCount > 0)
+            {
+                return input;
+            }
+            else
+            {
+                Console.WriteLine("Invalid Selection");
+            }
+        }
+        while (true);
+    }
+
+    public string ValidatePlayerOption()
+    {
+        do
+        {
+            List<string> options = new List<string> { "i", "s", "l", "e" };
 
             input = Console.ReadLine()!.ToLower();
 

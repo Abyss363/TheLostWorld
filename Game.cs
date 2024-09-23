@@ -20,21 +20,41 @@ public class Game
         }
     }
 
-    static void Start()
-    {
+    private static string idFilePath = "Saves/last_id.txt"; // File path for the last ID
+    public static int lastId = 0; // Last character ID
 
+    // Load last ID from file
+    public static void LoadLastId()
+    {
+        if (File.Exists(idFilePath))
+        {
+            string idString = File.ReadAllText(idFilePath);
+            if (int.TryParse(idString, out int id))
+            {
+                lastId = id; // Load the last ID from the file
+            }
+            else
+            {
+                lastId = 0; // If file content is invalid, start with 0
+            }
+        }
+        else
+        {
+            lastId = 0; // Start with 0 if the file doesn't exist
+        }
+    }
+
+    // Save the updated ID to file
+    public static void SaveLastId()
+    {
+        File.WriteAllText(idFilePath, lastId.ToString());
     }
 
     public static void Save()
     {
-            string path = "Saves/" + currentPlayer.id.ToString() + ".json";
-            string jsonData = JsonSerializer.Serialize(currentPlayer);
-
-            // Log what is being serialized
-            Console.WriteLine("Saving Player Data: " + jsonData);
-
-            File.WriteAllText(path, jsonData);
-            Console.WriteLine($"Player data saved to: {path}");
+        string path = "Saves/" + currentPlayer.id.ToString() + ".json";
+        string jsonData = JsonSerializer.Serialize(currentPlayer);
+        File.WriteAllText(path, jsonData);
     }
 
 

@@ -3,7 +3,7 @@
 public class EnemySpawn
 {
     string? name;
-    int eHealth;
+    static double eHealth;
     int escapeChance;
     int stamina;
     int attackPower;

@@ -5,6 +5,7 @@ public class Player
 {
     //Core
     public EveryItem inventory { get; set; } = new EveryItem(); // Add inventory
+    public EverySkill skills { get; set; } = new EverySkill(); // Add Skills
     public string name { get; set; } = "";
     public string race { get; set; } = "";
     public string playerClass { get; set; } = "";
@@ -87,7 +88,8 @@ public class Player
 
     //General
     public int gold { get; set; } = 0;
-    public bool ranAway {get; set;} = false;
+    public bool ranAway { get; set; } = false;
+    public bool isInCombat = false;
 
 
     public void CalculateStats()
@@ -116,5 +118,114 @@ public class Player
     {
         Console.WriteLine($"{name}'s Inventory:");
         inventory.DisplayInventory();
+    }
+
+    public void ShowSkills()
+    {
+        Console.WriteLine($"{name}'s Skills");
+        skills.DisplaySkills();
+    }
+
+    public void UseItem()
+    {
+        bool success;
+        ValidateInput validInput = new ValidateInput();
+
+        // Display the player's inventory
+        Game.currentPlayer.ShowInventory();
+
+        Console.WriteLine("Enter the name of the item you want to use:");
+        string itemName = validInput.ValidateItemName(); // Validate input
+
+        // Try to use the item
+        success = Game.currentPlayer.inventory.CombatUseItem(itemName);
+
+        if (success)
+        {
+            Console.WriteLine($"You used {itemName}.");
+        }
+        else
+        {
+            Console.WriteLine($"You don't have {itemName} or cannot use it.");
+        }
+    }
+
+    public void UseSkill()
+    {
+        ValidateInput validInput = new ValidateInput();
+
+        // Display the player's inventory
+        Game.currentPlayer.ShowSkills();
+
+        Console.WriteLine("Enter the name of the item you want to use:");
+        string skillName = validInput.ValidateItemName(); // Validate input
+
+        // Try to use the item
+        bool success = Game.currentPlayer.skills.UseSkill(skillName);
+
+        if (success)
+        {
+            Console.WriteLine($"You used {skillName}.");
+        }
+        else
+        {
+            Console.WriteLine($"You don't have {skillName} or cannot use it.");
+        }
+    }
+
+    public void UseSkill(ref double eHealth)
+    {
+        ValidateInput validInput = new ValidateInput();
+
+        // Display the player's inventory
+        Game.currentPlayer.ShowSkills();
+
+        Console.WriteLine("Enter the name of the item you want to use:");
+        string skillName = validInput.ValidateItemName(); // Validate input
+
+        // Try to use the item
+        bool success = Game.currentPlayer.skills.UseCombatSkill(skillName, ref eHealth);
+
+        if (success)
+        {
+            Console.WriteLine($"You used {skillName}.");
+        }
+        else
+        {
+            Console.WriteLine($"You don't have {skillName} or cannot use it.");
+        }
+    }
+
+    public void PlayerMenu()
+    {
+        ValidateInput validateInput = new ValidateInput();
+
+        while (true)
+        {
+            Console.WriteLine($"HP: {this.health}");
+            Console.WriteLine($"MP: {this.mana}");
+            Console.WriteLine($"Stamina: {this.stamina}");
+
+            Console.WriteLine("(I)tem Menu");
+            Console.WriteLine("(S)how Skills");
+            Console.WriteLine("(L)evels and Exp");
+            Console.WriteLine("(E)xit Player Menu");
+
+            string input = validateInput.ValidatePlayerOption();
+
+            switch (input)
+            {
+                case "i":
+                    UseItem();
+                    break;
+
+                case "s":
+                    UseSkill();
+                    break;
+                case "e":
+                    return;
+
+            }
+        }
     }
 }
