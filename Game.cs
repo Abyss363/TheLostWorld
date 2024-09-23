@@ -14,7 +14,6 @@ public class Game
     private static string idFilePath = Path.Combine(saveDirectory, "last_id.txt"); // File path for the last ID
 
 
-
     public Game()
     {
         if (!Directory.Exists(saveDirectory))
