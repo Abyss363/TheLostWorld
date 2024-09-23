@@ -73,5 +73,6 @@ public class FirstTown
             Console.WriteLine("You succeed in running away");
         }
         Game.currentPlayer.ranAway = false;
+        Game.Save();
     }
 }
