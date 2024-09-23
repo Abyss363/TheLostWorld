@@ -8,6 +8,7 @@ namespace TheLostWorld;
 public class Game
 {
     public static Player currentPlayer = new Player();
+    public static bool isDead = false;
     MainMenu mainMenu = new MainMenu();
 
 
@@ -26,8 +27,6 @@ public class Game
 
     public static void Save()
     {
-        try
-        {
             string path = "Saves/" + currentPlayer.id.ToString() + ".json";
             string jsonData = JsonSerializer.Serialize(currentPlayer);
 
@@ -36,11 +35,6 @@ public class Game
 
             File.WriteAllText(path, jsonData);
             Console.WriteLine($"Player data saved to: {path}");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Error saving player data: " + ex.Message);
-        }
     }
 
 
@@ -54,7 +48,7 @@ public class Game
             foreach (string p in paths)
             {
                 string jsonData = File.ReadAllText(p);
-                Player player = JsonSerializer.Deserialize<Player>(jsonData);
+                Player player = JsonSerializer.Deserialize<Player>(jsonData)!;
                 players.Add(player);
 
                 // Log the deserialized player
@@ -122,7 +116,7 @@ public class Game
         catch (Exception ex)
         {
             Console.WriteLine("Error loading player data: " + ex.Message);
-            return null;
+            return null!;
         }
 
     }

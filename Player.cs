@@ -4,6 +4,7 @@
 public class Player
 {
     //Core
+    public EveryItem inventory { get; set; } = new EveryItem(); // Add inventory
     public string name { get; set; } = "";
     public string race { get; set; } = "";
     public string playerClass { get; set; } = "";
@@ -23,10 +24,10 @@ public class Player
     public int intelligence { get; set; } = 1;
 
     //Stats
-    public int maxHealth { get; set; } = 10;
-    public int health { get; set; } = 10;
-    public int mana { get; set; } = 10;
-    public int maxMana { get; set; } = 10;
+    public double maxHealth { get; set; } = 10;
+    public double health { get; set; } = 10;
+    public double mana { get; set; } = 10;
+    public double maxMana { get; set; } = 10;
     public int stamina { get; set; } = 10;
     public int defence { get; set; } = 10;
     public int finalDefence { get; set; } = 10;
@@ -83,8 +84,10 @@ public class Player
     public int invoker { get; set; } = 0;//advances to necromancer
     public int invokerLevel { get; set; } = 1;
     public int invokerMaxExp { get; set; } = 50;
+
     //General
     public int gold { get; set; } = 0;
+    public bool ranAway {get; set;} = false;
 
 
     public void CalculateStats()
@@ -107,6 +110,11 @@ public class Player
         rogueMaxExp = rogueLevel * 50;
         tankMaxExp = tankLevel * 50;
         invokerMaxExp = invokerLevel * 50;
+    }
 
+    public void ShowInventory()
+    {
+        Console.WriteLine($"{name}'s Inventory:");
+        inventory.DisplayInventory();
     }
 }

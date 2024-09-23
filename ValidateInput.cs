@@ -29,8 +29,8 @@ public class ValidateInput
         //Races listed here
         do
         {
-            
-            List<string> races = new List<string> {"john"};//Races go here
+
+            List<string> races = new List<string> { "john" };//Races go here
             int raceCount = 0;
             foreach (var race in races)
             {
@@ -39,7 +39,7 @@ public class ValidateInput
             input = Console.ReadLine()!.ToLower();
             foreach (var race in races)
             {
-                if (input!.Contains(race.ToLower()))
+                if (input == race.ToLower())
                 {
                     raceCount++;
                 }
@@ -62,17 +62,17 @@ public class ValidateInput
         //Classes listed here
         do
         {
-            
-            List<string> classes = new List<string> {"fighter", "mage", "marksman", "rogue", "tank", "invoker"};//Classes go here
-            foreach (var _class in classes)
+
+            List<string> classes = new List<string> { "fighter", "mage", "marksman", "rogue", "tank", "invoker" };//Classes go here
+            foreach (var playerClass in classes)
             {
-                Console.WriteLine($"Class: {_class}");
+                Console.WriteLine($"Class: {playerClass}");
             }
             input = Console.ReadLine()!.ToLower();
             int classCount = 0;
-            foreach (var _class in classes)
+            foreach (var playerClass in classes)
             {
-                if (input!.Contains(_class.ToLower()))
+                if (input == playerClass.ToLower())
                 {
                     classCount++;
                 }
@@ -95,7 +95,7 @@ public class ValidateInput
         //Origins and Origin stories listed here
         do
         {
-            List<string> origins = new List<string> {"samurai"};//Origins go here
+            List<string> origins = new List<string> { "samurai" };//Origins go here
             foreach (var origin in origins)
             {
                 Console.WriteLine($"Origin: {origin}");
@@ -104,7 +104,7 @@ public class ValidateInput
             int originCount = 0;
             foreach (var origin in origins)
             {
-                if (input!.Contains(origin.ToLower()))
+                if (input == origin.ToLower())
                 {
                     originCount++;
                 }
@@ -117,6 +117,64 @@ public class ValidateInput
             else
             {
                 Console.WriteLine("Invalid Origin");
+            }
+        }
+        while (true);
+    }
+
+    public string ValidateCombatOption()
+    {
+        do
+        {
+            List<string> options = new List<string> { "a", "d", "r", "i", "s", "m" };
+
+            input = Console.ReadLine()!.ToLower();
+
+            int optionCount = 0;
+            foreach (var option in options)
+            {
+                if (input == option.ToLower())
+                {
+                    optionCount++;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(input) && optionCount > 0)
+            {
+                return input;
+            }
+            else
+            {
+                Console.WriteLine("Invalid Selection");
+            }
+        }
+        while (true);
+    }
+
+    public string ValidateTownOption()
+    {
+        do
+        {
+            List<string> options = new List<string> { "t", "c", "d", "l" };
+
+            input = Console.ReadLine()!.ToLower();
+
+            int optionCount = 0;
+            foreach (var option in options)
+            {
+                if (input == option.ToLower())
+                {
+                    optionCount++;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(input) && optionCount > 0)
+            {
+                return input;
+            }
+            else
+            {
+                Console.WriteLine("Invalid Selection");
             }
         }
         while (true);
